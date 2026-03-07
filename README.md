@@ -12,7 +12,7 @@ Este repositório inclui uma versão demo completa que funciona 100% no frontend
 
 | Ambiente | URL |
 |----------|-----|
-| Demo (Vercel) | https://legal-ai-assistant-demo.vercel.app |
+| 🌐 **Demo ao Vivo** | **https://leojnf.github.io/legal-ai-assistant/** |
 | Local | http://localhost:5173 |
 
 ### O que funciona na Demo
