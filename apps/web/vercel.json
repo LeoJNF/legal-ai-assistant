@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd ../.. && pnpm install && pnpm build --filter=web",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "installCommand": "pnpm install",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "env": {
+    "VITE_DEMO_MODE": "true"
+  }
+}
