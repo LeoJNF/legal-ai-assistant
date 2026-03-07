@@ -1,6 +1,5 @@
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { getChatModel } from '../langchain/config';
-import { LEGAL_SEARCH_PROMPT } from '../prompts';
 import type { LegalSearchResult } from '@legal-ai/shared';
 
 export async function searchLegalContent(
