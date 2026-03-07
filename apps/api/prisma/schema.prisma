@@ -1,0 +1,152 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole @default(LAWYER)
+  oab       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  documents Document[]
+  petitions Petition[]
+  deadlines Deadline[]
+  conversations Conversation[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  LAWYER
+  INTERN
+}
+
+model Document {
+  id        String         @id @default(cuid())
+  title     String
+  type      DocumentType
+  status    DocumentStatus @default(PENDING)
+  fileUrl   String
+  fileSize  Int
+  mimeType  String
+  userId    String
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@map("documents")
+}
+
+enum DocumentType {
+  CONTRACT
+  PETITION
+  COURT_DECISION
+  LEGISLATION
+  OTHER
+}
+
+enum DocumentStatus {
+  PENDING
+  ANALYZING
+  ANALYZED
+  ERROR
+}
+
+model Petition {
+  id          String         @id @default(cuid())
+  title       String
+  type        PetitionType
+  status      PetitionStatus @default(DRAFT)
+  content     String         @db.Text
+  clientName  String
+  clientCpf   String?
+  caseNumber  String?
+  court       String?
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@map("petitions")
+}
+
+enum PetitionType {
+  INICIAL
+  CONTESTACAO
+  RECURSO
+  HABEAS_CORPUS
+  MANDADO_SEGURANCA
+  EMBARGOS_DECLARACAO
+  AGRAVO
+  OUTROS
+}
+
+enum PetitionStatus {
+  DRAFT
+  REVIEW
+  FINAL
+}
+
+model Deadline {
+  id          String           @id @default(cuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  type        DeadlineType
+  status      DeadlineStatus   @default(PENDING)
+  caseNumber  String?
+  court       String?
+  priority    DeadlinePriority @default(MEDIUM)
+  userId      String
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@map("deadlines")
+}
+
+enum DeadlineType {
+  PRAZO_RECURSAL
+  PRAZO_CONTESTACAO
+  AUDIENCIA
+  JULGAMENTO
+  PRAZO_MANIFESTACAO
+  OUTROS
+}
+
+enum DeadlineStatus {
+  PENDING
+  COMPLETED
+  OVERDUE
+  CANCELLED
+}
+
+enum DeadlinePriority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  title     String
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("conversations")
+}
