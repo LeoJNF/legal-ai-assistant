@@ -8,7 +8,9 @@ import type { ApiResponse, ChatMessage, ChatResponse } from '@legal-ai/shared';
 
 export const chatRouter = Router();
 
-// In-memory conversation store (in production, use MongoDB)
+// In-memory conversation store for development.
+// In production, replace with MongoDB persistence using the @legal-ai/api MongoDB connection.
+// See MONGODB_URI in .env.example for configuration.
 const conversations = new Map<string, { title: string; messages: ChatMessage[]; userId: string }>();
 
 // List conversations
