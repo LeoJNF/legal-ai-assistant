@@ -27,22 +27,28 @@ Este repositório inclui uma versão demo completa que funciona 100% no frontend
 
 ### Rodando a Demo Localmente
 
+> ⚠️ **Importante:** Use o branch `main` (após o merge desta PR) ou o branch `copilot/test-service-visuals`. O branch `copilot/create-legal-ai-assistant` usa dependências `workspace:*` (pnpm) e **não** funciona com `npm install`.
+
 ```bash
 # 1. Clone o repositório
 git clone https://github.com/LeoJNF/legal-ai-assistant.git
 cd legal-ai-assistant
 
-# 2. Instale as dependências
+# 2. Acesse o diretório da aplicação web
 cd apps/web
+
+# 3. Instale as dependências (use npm, não pnpm)
 npm install
 
-# 3. Inicie o servidor de desenvolvimento
+# 4. Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
 Acesse: http://localhost:5173
 
 **Credenciais de demo:** qualquer email e senha funcionam.
+
+> 💡 Se aparecer o erro `Unsupported URL Type "workspace:": workspace:*`, você está no branch errado. Certifique-se de estar em `main` (ou `copilot/test-service-visuals` antes do merge) antes de rodar `npm install`.
 
 ### Build de Produção
 
