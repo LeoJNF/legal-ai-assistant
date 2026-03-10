@@ -1,0 +1,22 @@
+import React from 'react';
+import './Header.css';
+
+export const Header: React.FC = () => {
+  return (
+    <header className="header">
+      <div className="header-content">
+        <div className="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="#646cff"/>
+            <path d="M16 8L20 12H18V20H14V12H12L16 8Z" fill="white"/>
+            <rect x="10" y="22" width="12" height="2" rx="1" fill="white"/>
+          </svg>
+          <h1>Legal AI Assistant</h1>
+        </div>
+        <div className="demo-badge">
+          <span>MODO DEMO</span>
+        </div>
+      </div>
+    </header>
+  );
+};

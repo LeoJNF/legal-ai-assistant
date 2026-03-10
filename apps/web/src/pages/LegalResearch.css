@@ -1,0 +1,252 @@
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-bar {
+  display: flex;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.search-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.search-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.search-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.research-results {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.results-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.results-header h3 {
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.results-header p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.cases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.case-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #667eea;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.case-header h4 {
+  color: #213547;
+  margin: 0;
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+.relevance-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.case-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.case-court,
+.case-date {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.case-summary {
+  color: #213547;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state > p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.suggestions {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  background: #f0f7ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.suggestions h4 {
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.suggestions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.suggestions li {
+  padding: 0.5rem 0;
+  color: #213547;
+  font-style: italic;
+}
+
+.suggestions li:before {
+  content: "→ ";
+  color: #667eea;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.result-footer {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid #e5e5e5;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .case-header {
+    flex-direction: column;
+  }
+
+  .case-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .research-results {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-input {
+    background: #2a2a2a;
+    color: rgba(255, 255, 255, 0.87);
+    border-color: #667eea;
+  }
+
+  .research-results,
+  .empty-state {
+    background: #1a1a1a;
+  }
+
+  .results-header {
+    border-bottom-color: #333;
+  }
+
+  .results-header p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .case-card {
+    background: #2a2a2a;
+  }
+
+  .case-header h4,
+  .case-summary {
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .case-meta {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .empty-state > p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .suggestions {
+    background: #2a2a2a;
+  }
+
+  .suggestions li {
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .result-footer {
+    border-top-color: #333;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
