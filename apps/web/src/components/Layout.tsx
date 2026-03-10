@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, FileText, Scale, Search, Calendar, MessageSquare,
-  LogOut, Menu, X, User, ChevronRight
+  LogOut, Menu, X, User, ChevronRight, Users, Calculator
 } from 'lucide-react';
 import { DemoBanner } from './DemoBanner';
 import { useAuth } from '@/contexts/AuthContext';
@@ -14,6 +14,8 @@ const navItems = [
   { path: '/search', label: 'Pesquisa Jurídica', icon: Search },
   { path: '/deadlines', label: 'Prazos', icon: Calendar },
   { path: '/chat', label: 'Assistente Virtual', icon: MessageSquare },
+  { path: '/clients', label: 'Clientes', icon: Users },
+  { path: '/calculator', label: 'Calculadora', icon: Calculator },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -38,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         >
           <Menu size={22} />
         </button>
-        <h1 className="font-bold text-gray-900 text-lg">⚖️ Legal AI</h1>
+        <h1 className="font-bold text-gray-900 text-lg flex items-center gap-2"><Scale size={20} className="text-blue-600" /> Legal AI</h1>
         <div className="w-10" />
       </header>
 
@@ -58,7 +60,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         `}>
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">⚖️</span>
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Scale size={18} className="text-white" />
+              </div>
               <div>
                 <h1 className="font-bold text-gray-900 text-sm leading-tight">Legal AI</h1>
                 <p className="text-xs text-gray-500">Assistant</p>

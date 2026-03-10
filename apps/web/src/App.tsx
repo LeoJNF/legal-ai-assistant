@@ -8,6 +8,8 @@ import { PetitionsPage } from '@/pages/Petitions';
 import { SearchPage } from '@/pages/Search';
 import { DeadlinesPage } from '@/pages/Deadlines';
 import { ChatPage } from '@/pages/Chat';
+import { ClientsPage } from '@/pages/Clients';
+import { CalculatorPage } from '@/pages/Calculator';
 import { Spinner } from '@/components/Spinner';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -55,6 +57,16 @@ function AppRoutes() {
       <Route path="/chat" element={
         <PrivateRoute>
           <Layout><ChatPage /></Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/clients" element={
+        <PrivateRoute>
+          <Layout><ClientsPage /></Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/calculator" element={
+        <PrivateRoute>
+          <Layout><CalculatorPage /></Layout>
         </PrivateRoute>
       } />
     </Routes>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Plus, CheckCircle, Trash2, X } from 'lucide-react';
+import { Plus, CheckCircle, Trash2, X, AlertOctagon, AlertTriangle, Clock, Calendar } from 'lucide-react';
 import { api } from '@/services/api';
 import { Spinner } from '@/components/Spinner';
 
@@ -15,11 +15,11 @@ interface Deadline {
   type: string;
 }
 
-const priorityConfig: Record<string, { color: string; label: string; icon: string }> = {
-  urgent: { color: 'bg-red-50 border-red-200 text-red-800', label: 'Urgente', icon: '🚨' },
-  high: { color: 'bg-orange-50 border-orange-200 text-orange-800', label: 'Alta', icon: '⚠️' },
-  medium: { color: 'bg-yellow-50 border-yellow-200 text-yellow-800', label: 'Média', icon: '⏰' },
-  low: { color: 'bg-green-50 border-green-200 text-green-800', label: 'Baixa', icon: '📅' },
+const priorityConfig: Record<string, { color: string; label: string; icon: React.ElementType }> = {
+  urgent: { color: 'bg-red-50 border-red-200 text-red-800', label: 'Urgente', icon: AlertOctagon },
+  high: { color: 'bg-orange-50 border-orange-200 text-orange-800', label: 'Alta', icon: AlertTriangle },
+  medium: { color: 'bg-yellow-50 border-yellow-200 text-yellow-800', label: 'Média', icon: Clock },
+  low: { color: 'bg-green-50 border-green-200 text-green-800', label: 'Baixa', icon: Calendar },
 };
 
 const typeLabels: Record<string, string> = {
@@ -154,7 +154,9 @@ export function DeadlinesPage() {
           return (
             <div key={deadline.id} className={`bg-white rounded-xl border p-4 ${deadline.daysRemaining <= 3 ? 'border-red-200' : 'border-gray-200'}`}>
               <div className="flex items-start gap-3">
-                <span className="text-xl mt-0.5">{p.icon}</span>
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${p.color.split(' ')[0]}`}>
+                  {(() => { const Ic = p.icon; return <Ic size={16} className={p.color.split(' ')[2]} />; })()}
+                </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
@@ -169,8 +171,9 @@ export function DeadlinesPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-xs text-gray-500">
-                      📅 {new Date(deadline.dueDate).toLocaleDateString('pt-BR')}
+                    <span className="text-xs text-gray-500 flex items-center gap-1">
+                      <Calendar size={11} className="text-gray-400" />
+                      {new Date(deadline.dueDate).toLocaleDateString('pt-BR')}
                     </span>
                     <span className="text-xs text-gray-400">·</span>
                     <span className="text-xs text-gray-500">{typeLabels[deadline.type] || deadline.type}</span>

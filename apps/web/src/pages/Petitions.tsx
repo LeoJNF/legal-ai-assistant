@@ -221,7 +221,7 @@ export function PetitionsPage() {
             disabled={generating}
             className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
           >
-            {generating ? <><Spinner size="sm" /> Gerando petição com IA...</> : '⚖️ Gerar Petição'}
+            {generating ? <><Spinner size="sm" /> Gerando petição com IA...</> : <><Scale size={16} /> Gerar Petição</>}
           </button>
         </div>
       )}

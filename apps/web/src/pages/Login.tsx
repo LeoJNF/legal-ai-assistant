@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Scale } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Spinner } from '@/components/Spinner';
 
@@ -36,14 +37,16 @@ export function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="text-5xl mb-3">⚖️</div>
+          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white bg-opacity-20 mx-auto mb-3">
+            <Scale size={32} className="text-white" />
+          </div>
           <h1 className="text-3xl font-bold text-white">Legal AI Assistant</h1>
           <p className="text-blue-200 mt-2">Software jurídico inteligente para advogados</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
           <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center">
-            <p className="text-xs text-yellow-700">🎭 <strong>Modo Demo</strong> — Use qualquer email/senha para entrar</p>
+            <p className="text-xs text-yellow-700"><strong>Modo Demo</strong> — Use qualquer email/senha para entrar</p>
           </div>
 
           <div className="flex">

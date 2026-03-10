@@ -8,6 +8,7 @@ import {
   mockChatHistory,
   mockResponses,
   mockDashboardStats,
+  mockClients,
 } from './mockData';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -163,4 +164,33 @@ export async function sendMessage(message: string) {
 export async function getDashboardStats() {
   await randomDelay();
   return mockDashboardStats;
+}
+
+export async function getClients() {
+  await randomDelay();
+  const stored = localStorage.getItem('mockClients');
+  if (stored) return JSON.parse(stored);
+  return mockClients;
+}
+
+export async function createClient(data: { name: string; email: string; phone: string; cpf: string; area: string }) {
+  await delay(800);
+  const newClient = {
+    id: String(Date.now()),
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    cpf: data.cpf,
+    area: data.area,
+    activeCases: 0,
+    totalCases: 0,
+    createdAt: new Date().toISOString(),
+    lastActivity: new Date().toISOString(),
+    status: 'active',
+  };
+  const stored = localStorage.getItem('mockClients');
+  const current = stored ? JSON.parse(stored) : mockClients;
+  const updated = [newClient, ...current];
+  localStorage.setItem('mockClients', JSON.stringify(updated));
+  return newClient;
 }

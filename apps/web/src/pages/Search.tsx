@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, BookOpen, Scale, Loader2 } from 'lucide-react';
+import { Search, BookOpen, Scale, Loader2, FileText, Scroll } from 'lucide-react';
 import { api } from '@/services/api';
 
 interface SearchResult {
@@ -22,10 +22,10 @@ interface SearchResponse {
   results: SearchResult[];
 }
 
-const typeConfig: Record<string, { icon: string; label: string; color: string }> = {
-  jurisprudence: { icon: '⚖️', label: 'Jurisprudência', color: 'bg-blue-50 text-blue-700' },
-  legislation: { icon: '📜', label: 'Legislação', color: 'bg-green-50 text-green-700' },
-  doctrine: { icon: '📚', label: 'Doutrina', color: 'bg-purple-50 text-purple-700' },
+const typeConfig: Record<string, { icon: React.ElementType; label: string; color: string }> = {
+  jurisprudence: { icon: Scale, label: 'Jurisprudência', color: 'bg-blue-50 text-blue-700' },
+  legislation: { icon: Scroll, label: 'Legislação', color: 'bg-green-50 text-green-700' },
+  doctrine: { icon: BookOpen, label: 'Doutrina', color: 'bg-purple-50 text-purple-700' },
 };
 
 export function SearchPage() {
@@ -97,7 +97,9 @@ export function SearchPage() {
             {filteredResults.map(result => (
               <div key={result.id} className="bg-white rounded-xl border border-gray-200 p-4">
                 <div className="flex items-start gap-3">
-                  <span className="text-xl">{typeConfig[result.type]?.icon || '📄'}</span>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-gray-100">
+                    {(() => { const Ic = typeConfig[result.type]?.icon || FileText; return <Ic size={16} className="text-gray-600" />; })()}
+                  </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                       <span className={`text-xs px-2 py-0.5 rounded-full ${typeConfig[result.type]?.color || 'bg-gray-50 text-gray-600'}`}>

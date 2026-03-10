@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, Scale, Search, Calendar, TrendingUp, Clock, ArrowRight } from 'lucide-react';
+import { FileText, Scale, Search, Calendar, TrendingUp, Clock, ArrowRight, MessageSquare, Users, Calculator } from 'lucide-react';
 import { api } from '@/services/api';
 import { Spinner } from '@/components/Spinner';
 import { useAuth } from '@/contexts/AuthContext';
@@ -13,8 +13,8 @@ interface Stats {
   recentActivity: Array<{ id: string; type: string; description: string; date: string }>;
 }
 
-const activityIcons: Record<string, string> = {
-  document: '📄', petition: '⚖️', search: '🔍', deadline: '📅',
+const activityIconComponents: Record<string, React.ElementType> = {
+  document: FileText, petition: Scale, search: Search, deadline: Calendar,
 };
 
 export function DashboardPage() {
@@ -48,7 +48,7 @@ export function DashboardPage() {
   return (
     <div className="p-4 md:p-6 max-w-5xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Olá, {user?.name?.split(' ')[0]}! 👋</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Olá, {user?.name?.split(' ')[0]}!</h1>
         <p className="text-gray-500 text-sm mt-1">Aqui está um resumo da sua atividade</p>
       </div>
 
@@ -75,15 +75,18 @@ export function DashboardPage() {
             <h2 className="font-semibold text-gray-900">Atividade Recente</h2>
           </div>
           <div className="space-y-3">
-            {stats?.recentActivity.map(item => (
-              <div key={item.id} className="flex items-start gap-3">
-                <span className="text-lg">{activityIcons[item.type]}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-700 truncate">{item.description}</p>
-                  <p className="text-xs text-gray-400">{new Date(item.date).toLocaleDateString('pt-BR')}</p>
+            {stats?.recentActivity.map(item => {
+              const ActivityIcon = activityIconComponents[item.type] || FileText;
+              return (
+                <div key={item.id} className="flex items-start gap-3">
+                  <ActivityIcon size={16} className="text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-gray-700 truncate">{item.description}</p>
+                    <p className="text-xs text-gray-400">{new Date(item.date).toLocaleDateString('pt-BR')}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -94,18 +97,20 @@ export function DashboardPage() {
           </div>
           <div className="space-y-2">
             {[
-              { label: 'Analisar novo documento', path: '/documents', icon: '📄' },
-              { label: 'Gerar petição', path: '/petitions', icon: '⚖️' },
-              { label: 'Pesquisar jurisprudência', path: '/search', icon: '🔍' },
-              { label: 'Ver prazos do dia', path: '/deadlines', icon: '📅' },
-              { label: 'Conversar com assistente', path: '/chat', icon: '💬' },
-            ].map(({ label, path, icon }) => (
+              { label: 'Analisar novo documento', path: '/documents', Icon: FileText },
+              { label: 'Gerar petição', path: '/petitions', Icon: Scale },
+              { label: 'Pesquisar jurisprudência', path: '/search', Icon: Search },
+              { label: 'Ver prazos do dia', path: '/deadlines', Icon: Calendar },
+              { label: 'Conversar com assistente', path: '/chat', Icon: MessageSquare },
+              { label: 'Gerenciar clientes', path: '/clients', Icon: Users },
+              { label: 'Calcular honorários', path: '/calculator', Icon: Calculator },
+            ].map(({ label, path, Icon }) => (
               <button
                 key={path}
                 onClick={() => navigate(path)}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors text-left group"
               >
-                <span className="text-lg">{icon}</span>
+                <Icon size={16} className="text-gray-400 flex-shrink-0" />
                 <span className="text-sm text-gray-700 flex-1">{label}</span>
                 <ArrowRight size={14} className="text-gray-300 group-hover:text-gray-500 transition-colors" />
               </button>
