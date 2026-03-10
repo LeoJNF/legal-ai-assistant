@@ -163,7 +163,7 @@ export const mockApi = {
     return mockTemplates;
   },
 
-  generatePetition: async (templateId: string, data: Record<string, string>): Promise<GeneratedPetition> => {
+  generatePetition: async (templateId: string, _data: Record<string, string>): Promise<GeneratedPetition> => {
     await delay(2500);
     const template = mockTemplates.find(t => t.id === templateId);
     return {

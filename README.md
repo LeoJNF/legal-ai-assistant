@@ -142,6 +142,16 @@ npm run preview      # Preview da build de produção
 npm run lint         # Executa o linter
 ```
 
+## 🧪 Como Testar
+
+Para um guia completo de testes de todas as funcionalidades, consulte o [Guia de Testes](TESTING_GUIDE.md).
+
+Resumo rápido:
+1. `cd apps/web && npm install`
+2. `npm run dev`
+3. Acesse http://localhost:3000
+4. Teste cada serviço clicando nos cards da página inicial
+
 ## 🔒 Observações de Segurança
 
 Em modo demo:
