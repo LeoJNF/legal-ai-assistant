@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint"
-  },
-  "devDependencies": {
-    "turbo": "^2.0.0"
-  },
-  "packageManager": "pnpm@8.15.0"
+    "dev": "npm run dev --prefix apps/web",
+    "build": "npm run build --prefix apps/web",
+    "install:web": "npm install --prefix apps/web"
+  }
 }
