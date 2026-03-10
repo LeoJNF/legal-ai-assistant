@@ -1,0 +1,35 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.footer {
+  background: #f9f9f9;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 3rem;
+}
+
+.footer p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: #1a1a1a;
+    border-top-color: #333;
+  }
+
+  .footer p {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
